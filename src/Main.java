@@ -78,7 +78,7 @@ public class Main {
         }
     }
 
-        public static void updatePatientResults(double insuranceId) {
+        private static void updatePatientResults(double insuranceId) {
         int _index = patientsList.getPatientIndex(insuranceId);
 
         if (_index != -1) {
