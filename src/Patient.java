@@ -40,10 +40,10 @@ public abstract class Patient {
 
     public String toString() {
         return  "Name: " + this.getName() +
-                "\n Address: " + this.getAddress() +
-                "\n Telephone: " + this.getTelephone() +
-                "\n Insurance id:  " + this.getNationalInsuranceId() +
-                "\n Type: " + this.getType();
+                "\nAddress: " + this.getAddress() +
+                "\nTelephone: " + this.getTelephone() +
+                "\nInsurance id:  " + this.getNationalInsuranceId() +
+                "\nType: " + this.getType();
     }
 
     abstract public void storeResults(MicrobiologicalTest test);
