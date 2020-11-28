@@ -11,7 +11,7 @@ public class Main {
 
         while (!quit) {
             menu();
-            System.out.println("Give a choice [1..6]");
+            System.out.println("Give a choice [1..5]");
             choice = sc.nextInt();
             sc.nextLine();
 
@@ -20,15 +20,13 @@ public class Main {
                     createPatient();
                     break;
                 case 2:
-                    System.out.println("Please type the patient's insurance id: (double)");
-                    printPatient(sc.nextDouble());
+                    printPatient();
                     break;
                 case 3:
-                    System.out.println("Please type the patient's insurance id: (double)");
-                    updatePatientResults(sc.nextDouble());
+                    updatePatientResults();
                     break;
                 case 4:
-                    patientsList.print();
+                    printAllPatients();
                     break;
                 case 5:
                     quit = true;
@@ -69,18 +67,24 @@ public class Main {
 
         if (type == PatientType.FOREIGNER_PATIENT) {
             System.out.println("Please type patient's nationality: (String)");
-            String _nationality = sc.nextLine();
+            String _nationality = sc.next();
             patientsList.addPatient(new ForeignPatient(_name, _address, _tel, _nationality));
         }
     }
 
-    private static void printPatient(double _insuranceId) {
+    private static void printPatient() {
+        System.out.println("Please type the patient's insurance id: (double)");
+        double _insuranceId = sc.nextDouble();
+
         if (patientsList.getPatient(_insuranceId) != null) {
             System.out.println(patientsList.getPatient(_insuranceId).toString());
         } else System.out.println("Patient not found");
     }
 
-    private static void updatePatientResults(double insuranceId) {
+    private static void updatePatientResults() {
+        System.out.println("Please type the patient's insurance id: (double)");
+        double insuranceId = sc.nextDouble();
+
         int _index = patientsList.getPatientIndex(insuranceId);
 
         if (_index != -1) {
@@ -92,11 +96,14 @@ public class Main {
 
             System.out.println("Give exam's result: (String)");
             String _result = sc.next();
-            sc.nextLine();
 
             patientsList.updatePatientResults(_index, _date, _name, _result);
         }
 
+    }
+
+    private static void printAllPatients() {
+        patientsList.print();
     }
 
 

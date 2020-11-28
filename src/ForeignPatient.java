@@ -22,7 +22,7 @@ public class ForeignPatient extends Patient {
         }
 
         if (this.nationality != null) {
-            output.append(this.nationality);
+            output.append("\n Nationality: ").append(this.nationality);
         }
 
         return output.toString();
