@@ -19,13 +19,9 @@ public class Main {
                 case 1:
                     createPatient();
                     break;
-               case 2:
+                case 2:
                     System.out.println("Please type the patient's insurance id: (double)");
-                    double _insuranceId = sc.nextDouble();
-                    if (patientsList.getPatient(_insuranceId) != null) {
-                        System.out.println("Patient found");
-                        System.out.println(patientsList.getPatient(_insuranceId).toString());
-                    } else System.out.println("Patient not found");
+                    printPatient(sc.nextDouble());
                     break;
                 case 3:
                     System.out.println("Please type the patient's insurance id: (double)");
@@ -78,7 +74,13 @@ public class Main {
         }
     }
 
-        private static void updatePatientResults(double insuranceId) {
+    private static void printPatient(double _insuranceId) {
+        if (patientsList.getPatient(_insuranceId) != null) {
+            System.out.println(patientsList.getPatient(_insuranceId).toString());
+        } else System.out.println("Patient not found");
+    }
+
+    private static void updatePatientResults(double insuranceId) {
         int _index = patientsList.getPatientIndex(insuranceId);
 
         if (_index != -1) {
