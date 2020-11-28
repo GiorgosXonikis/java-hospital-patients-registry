@@ -1,29 +1,27 @@
 import java.util.ArrayList;
 
-
 public class NativePatient extends Patient {
 
-    private ArrayList<MicrobiologicalTest> tests;
+    private ArrayList<MicrobiologicalTest> testsList;
 
-    public NativePatient(String name, String address, String telephone, double insuranceId) {
-        super(name, address, telephone, insuranceId);
-        tests = new ArrayList<MicrobiologicalTest>();
+    public NativePatient(String _name, String _address, String _telephone, double _nationalInsuranceId) {
+        super(_name, _address, _telephone, _nationalInsuranceId);
+        this.testsList = new ArrayList<MicrobiologicalTest>();
     }
 
-    public void storeResults(double examResult, String examName, String date) {
-        MicrobiologicalTest theTest = new MicrobiologicalTest(examResult, examName, date);
-        tests.add(theTest);
+    public void storeResults(MicrobiologicalTest test) {
+        this.testsList.add(test);
     }
 
     public String toString() {
-        String output = "***** Aσθενής EU*****\n";
+        StringBuilder output = new StringBuilder("***** Native Patient *****\n");
 
-        output += super.toString();
+        output.append(super.toString());
 
-        for (int i = 0; i < tests.size(); i++) {
-            output += tests.get(i).toString();
+        for (MicrobiologicalTest _test : this.testsList) {
+            output.append(_test.toString());
         }
-        return output;
+        return output.toString();
     }
 
 

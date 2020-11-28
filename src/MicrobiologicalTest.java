@@ -1,17 +1,17 @@
 public class MicrobiologicalTest {
 
-    private double examResult;
-    private String examName;
     private String date;
+    private String name;
+    private String result;
 
-    public MicrobiologicalTest(double examResult, String examName, String date) {
-        this.examResult = examResult;
-        this.examName = examName;
-        this.date = date;
+    public MicrobiologicalTest(String _date, String _name, String _result) {
+        this.result = _result;
+        this.name = _name;
+        this.date = _date;
     }
 
     public String toString() {
-        return "\n Date:" + date + "\n Exam: " + examName + "\n Result: " + examResult;
+        return "\n Date:" + this.date + "\n Exam: " + this.name + "\n Result: " + this.result;
     }
 
 

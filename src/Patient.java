@@ -5,19 +5,18 @@ public abstract class Patient {
     private double nationalInsuranceId;
     private int type;
 
-    public Patient(String name, String address, String telephone, double nationalInsuranceId) {
-        this.name = name;
-        this.address = address;
-        this.telephone = telephone;
-        this.nationalInsuranceId = nationalInsuranceId;
+    public Patient(String _name, String _address, String _telephone, double _nationalInsuranceId) {
+        this.name = _name;
+        this.address = _address;
+        this.telephone = _telephone;
+        this.nationalInsuranceId = _nationalInsuranceId;
         this.type = PatientType.NATIVE_PATIENT;
     }
 
-    public Patient(String name, String address, String telephone) {
-        this.name = name;
-        this.address = address;
-        this.telephone = telephone;
-        this.nationalInsuranceId = 0;
+    public Patient(String _name, String _address, String _telephone) {
+        this.name = _name;
+        this.address = _address;
+        this.telephone = _telephone;
         this.type = PatientType.FOREIGNER_PATIENT;
     }
 
@@ -33,9 +32,7 @@ public abstract class Patient {
         return this.telephone;
     }
 
-    public double getNationalInsuranceId() {
-        return this.nationalInsuranceId;
-    }
+    public double getNationalInsuranceId() { return this.nationalInsuranceId; }
 
     public int getType() {
         return this.type;
@@ -49,6 +46,6 @@ public abstract class Patient {
                 "\n Type: " + this.getType();
     }
 
-    abstract public void storeResults(double examResult, String examName, String date);
+    abstract public void storeResults(MicrobiologicalTest test);
 
 }

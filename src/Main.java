@@ -11,7 +11,7 @@ public class Main {
 
         while (!quit) {
             menu();
-            System.out.println("Δώσε την επιλογή [1..6]");
+            System.out.println("Give a choice [1..6]");
             choice = sc.nextInt();
             sc.nextLine();
 
@@ -20,72 +20,81 @@ public class Main {
                     createPatient();
                     break;
                case 2:
-                    System.out.println("Δώσε τον AMKA του ασθενή: ");
-                    double p = sc.nextDouble();
-                    if (patientsList.getPatient(p) != null) {
+                    System.out.println("Please type the patient's insurance id: (double)");
+                    double _insuranceId = sc.nextDouble();
+                    if (patientsList.getPatient(_insuranceId) != null) {
                         System.out.println("Patient found");
-                        System.out.println(patientsList.getPatient(p).toString());
+                        System.out.println(patientsList.getPatient(_insuranceId).toString());
                     } else System.out.println("Patient not found");
                     break;
                 case 3:
-                    System.out.println("Δώσε το όνομα του ασθενούς: ");
-                    String name = sc.nextLine();
-                    patientsList.changePatientType(name);
+                    System.out.println("Please type the patient's insurance id: (double)");
+                    updatePatientResults(sc.nextDouble());
                     break;
                 case 4:
-                    System.out.println("Δώσε τον AMKA του ασθενή: ");
-                    double am = sc.nextDouble();
-                    patientsList.updatePatientResults(am);
-                    break;
-                case 5:
                     patientsList.print();
                     break;
-                case 6:
+                case 5:
                     quit = true;
                     break;
             }
 
         }
-
-
     }
-
 
     private static void menu() {
         System.out.println("*************************************************************");
-        System.out.println("1. Καταχώριση νέου ασθενούς");
-        System.out.println("2. Εμφάνιση των στοιχείων ενός ασθενούς");
-        System.out.println("3. Αλλαγή της κατηγορίας ενός ασθενούς από μετανάστη σε EU");
-        System.out.println("4. Καταχώριση των αποτελεσμάτων των εξετάσεων ενός ασθενούς");
-        System.out.println("5. Εμφάνιση λίστας ασθενών");
-        System.out.println("6. Έξοδος");
+        System.out.println("1. Insert new patient");
+        System.out.println("2. Print patient's data");
+        System.out.println("3. Insert patient's test");
+        System.out.println("4. Print patients list");
+        System.out.println("5. Exit");
     }
 
-    private static Patient createPatient() {
-        Patient p;
-        System.out.println("ΚΑΤΑΧΩΡΙΣΗ ΝΕΟΥ ΑΣΘΕΝΟΥΣ");
-        System.out.println("Δώσε το ονοματεπώνυμο του ασθενή: (String)");
-        String name = sc.nextLine();
+    private static void createPatient() {
+        System.out.println("1. Insert new patient");
+        System.out.println("Please type patient's name: (String)");
+        String _name = sc.nextLine();
 
-        System.out.println("Δώσε τη διεύθυνση του ασθενή: (String)");
-        String address = sc.nextLine();
+        System.out.println("Please type patient's address: (String)");
+        String _address = sc.nextLine();
 
-        System.out.println("Δώσε το τηλέφωνο του ασθενή: (String)");
-        String tel = sc.nextLine();
+        System.out.println("Please type patient's telephone: (String)");
+        String _tel = sc.nextLine();
 
-        System.out.println("Please provide the patient's nationality: (String)");
-        String nationality = sc.nextLine();
-
-        System.out.println("Type 1 for native patient and 2 for foreigner: (int)");
+        System.out.println("Please type 1 for Native patient and 2 for Foreigner: (int)");
         int type = sc.nextInt();
-        if (type == 1) {
-            System.out.println("Δώσε τον αριθμό μητρώου κοινωνικής ασφάλισης του ασθενή: (double)");
-            double insuranceId = sc.nextDouble();
-            p = new NativePatient(name, address, tel, insuranceId);
-        } else p = new ForeignerPatient(name, address, tel, nationality);
-        sc.nextLine();
-        patientsList.addPatient(p);
-        return p;
+
+        if (type == PatientType.NATIVE_PATIENT) {
+            System.out.println("Please type the patient's national insurance number: (double)");
+            double _insuranceId = sc.nextDouble();
+            patientsList.addPatient(new NativePatient(_name, _address, _tel, _insuranceId));
+        }
+
+        if (type == PatientType.FOREIGNER_PATIENT) {
+            System.out.println("Please type patient's nationality: (String)");
+            String _nationality = sc.nextLine();
+            patientsList.addPatient(new ForeignPatient(_name, _address, _tel, _nationality));
+        }
+    }
+
+        public static void updatePatientResults(double insuranceId) {
+        int _index = patientsList.getPatientIndex(insuranceId);
+
+        if (_index != -1) {
+            System.out.println("Give exam's date: (String)");
+            String _date = sc.next();
+
+            System.out.println("Give exam's name: (String)");
+            String _name = sc.next();
+
+            System.out.println("Give exam's result: (String)");
+            String _result = sc.next();
+            sc.nextLine();
+
+            patientsList.updatePatientResults(_index, _date, _name, _result);
+        }
+
     }
 
 
