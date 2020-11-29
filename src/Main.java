@@ -23,7 +23,7 @@ public class Main {
                     printPatient();
                     break;
                 case 3:
-                    updatePatientResults();
+                    insertPatientResults();
                     break;
                 case 4:
                     printAllPatients();
@@ -80,7 +80,7 @@ public class Main {
         } else System.out.println("Patient not found");
     }
 
-    private static void updatePatientResults() {
+    private static void insertPatientResults() {
         System.out.println("Please type the patient's insurance id: (double)");
         double insuranceId = sc.nextDouble();
 
@@ -96,7 +96,7 @@ public class Main {
             System.out.println("Give exam's result: (String)");
             String _result = sc.next();
 
-            patientsList.updatePatientResults(_index, _date, _name, _result);
+            patientsList.addPatientResults(_index, _date, _name, _result);
         }
 
     }

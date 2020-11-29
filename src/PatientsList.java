@@ -35,7 +35,7 @@ public class PatientsList {
         return null;
     }
 
-    public void updatePatientResults(int _index, String _date, String _name, String _result) {
+    public void addPatientResults(int _index, String _date, String _name, String _result) {
         MicrobiologicalTest _test = new MicrobiologicalTest(_date, _name, _result);
         patientsList.get(_index).storeResults(_test);
 
